@@ -1,11 +1,12 @@
-import logo from "../assets/openai.png"
+import logo from "../assets/Gemini.png"
 
 function Footer() {
   return (
-    <div className="flex mt-4">
-        <img src={logo} alt="logo" width={25}/>
-        <p>Powered by OpenAI</p>
+    <div className="flex flex-col mt-4">
+      <p>
+        Powered by Google Gemini <img src={logo} alt="logo" className="mt-[-2rem]" width={190} />{" "}
+      </p>
     </div>
-  )
+  );
 }
 export default Footer

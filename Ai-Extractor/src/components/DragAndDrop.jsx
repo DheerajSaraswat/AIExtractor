@@ -1,5 +1,6 @@
-import { useState } from "react";
-import openAICall from "../utils/ApiCall";
+import { useState, useEffect } from "react";
+import { toast, Bounce } from "react-toastify";
+import geminiCall from "../utils/ApiCall";
 
 function DragAndDrop() {
   const [dragging, setDragging] = useState(false);
@@ -14,27 +15,60 @@ function DragAndDrop() {
     e.preventDefault();
     setDragging(false);
     const file = e.dataTransfer.files[0];
+    if (file.type !== "text/plain") {
+      toast.error("Only .txt file is accepted.", {
+        position: "top-right",
+        style: {
+          backgroundColor: "#ba3333",
+          color: "#fff",
+          borderRadius: "10px",
+          padding: "10px",
+        },
+      });
+      return;
+    }
     setUploadedFile(file);
     readFileData(file);
   };
 
-  document.addEventListener("DOMContentLoaded", () => {
+  useEffect(() => {
     const fileInput = document.getElementById("fileInput");
-
     fileInput.addEventListener("change", (e) => {
       e.preventDefault();
       const file = e.target.files[0];
+      if (file.type !== "text/plain") {
+        toast.error("Only .txt file is accepted.", {
+          position: "top-right",
+          style: {
+            backgroundColor: "#ba3333",
+            color: "#fff",
+            borderRadius: "10px",
+            padding: "10px",
+          },
+        });
+        return;
+      }
       setUploadedFile(file);
       readFileData(file);
     });
-  });
+  }, []);
 
   const readFileData = (file) => {
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.onload = async () => {
       const fileContent = reader.result;
-      console.log(fileContent);
-      // openAICall(fileData)
+      const fetchedKeywords = await geminiCall(fileContent);
+      toast.success(`${fetchedKeywords}`, {
+        position: "top-center",
+        autoClose: false,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     };
     reader.readAsText(file);
   };
@@ -54,9 +88,12 @@ function DragAndDrop() {
         <div className="w-48 h-2/4 ml-40 bg-blue-600 border-white border-double border-2 flex flex-col items-center justify-center cursor-pointer">
           <span>Drag file here</span>
           <input type="file" id="fileInput" className="w-16 h-10 mt-2" />
+          <span className="text-[.7rem]">(Only .txt file accepted)</span>
         </div>
       )}
-      {uploadedFile && <p>File uploaded: {uploadedFile.name}</p>}
+      {uploadedFile && (
+        <p className="text-center">File uploaded: {uploadedFile.name}</p>
+      )}
     </div>
   );
 }

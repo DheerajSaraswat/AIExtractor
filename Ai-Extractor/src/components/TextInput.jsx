@@ -1,16 +1,13 @@
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import OpenAI from 'openai'
-import axios from 'axios'
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import openAICall from "../utils/ApiCall";
+import geminiCall from "../utils/ApiCall";
 
 
 function TextInput() {
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [keywords, setKeywords] = useState("");
   const [text, setText] = useState("");
 
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
@@ -29,8 +26,18 @@ function TextInput() {
     } else {
       setLoading(true);
       setIsOpen(true);
-      openAICall(text)
-
+      const fetchedKeywords = await geminiCall(text)
+      toast.success(`${fetchedKeywords}`, {
+        position: "top-center",
+        autoClose: false,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   };
 
