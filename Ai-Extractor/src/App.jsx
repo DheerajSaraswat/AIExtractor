@@ -1,4 +1,3 @@
-import './App.css'
 import Extractor from './components/Extractor'
 import Footer from './components/Footer';
 import Header from './components/Header';

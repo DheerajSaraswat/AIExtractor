@@ -1,5 +1,4 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import Result from "../components/Result";
 
 const geminiCall = async (text) => {
 
