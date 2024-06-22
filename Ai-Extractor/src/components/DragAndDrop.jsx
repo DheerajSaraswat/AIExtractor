@@ -81,11 +81,11 @@ function DragAndDrop() {
     >
       <span className="text-2xl text-center">Upload File</span>
       {dragging ? (
-        <div className="w-48 h-2/4 ml-40 bg-blue-600 border-white border-double border-2 flex items-center justify-center cursor-pointer">
+        <div className="h-2/4 bg-blue-600 border-white border-double border-2 flex items-center justify-center cursor-pointer">
           Drop file here
         </div>
       ) : (
-        <div className="w-48 h-2/4 ml-40 bg-blue-600 border-white border-double border-2 flex flex-col items-center justify-center cursor-pointer">
+        <div className="h-2/4  bg-blue-600 border-white border-double border-2 flex flex-col items-center justify-center cursor-pointer">
           <span>Drag file here</span>
           <input type="file" id="fileInput" className="w-16 h-10 mt-2" />
           <span className="text-[.7rem]">(Only .txt file accepted)</span>

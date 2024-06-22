@@ -50,7 +50,7 @@ function TextInput() {
         {" "}
       </textarea>
       <button
-        className="py-1 px-8 border-white bg-blue-600 rounded-md mt-2 active:scale-95 duration-100"
+        className="py-1 w-96 border-white bg-blue-600 rounded-md mt-2 active:scale-95 duration-100"
         onClick={submitText}
       >
         Submit
