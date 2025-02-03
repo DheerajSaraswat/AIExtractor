@@ -42,15 +42,15 @@ function TextInput() {
   };
 
   return (
-    <div className="w-1/2 h-full flex flex-col justify-center px-16">
+    <div className="w-full h-full min-h-[250px] flex flex-col items-center justify-center px-4 py-4 md:py-0">
       <textarea
-        className="bg-blue-900 w-96 h-64 resize-none outline-none p-2 text-sm border rounded-md"
+        className="w-full max-w-md h-48 md:h-64 resize-none outline-none p-2 text-sm border rounded-md bg-blue-900"
         onChange={(e) => setText(e.target.value)}
       >
         {" "}
       </textarea>
       <button
-        className="py-1 w-96 border-white bg-blue-600 rounded-md mt-2 active:scale-95 duration-100"
+        className="w-full max-w-md py-1 border-white bg-blue-600 rounded-md mt-2 active:scale-95 duration-100"
         onClick={submitText}
       >
         Submit

@@ -3,11 +3,11 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 
 function App() {
-  
-
   return (
-    <div className="h-screen w-screen bg-blue-950 flex flex-col justify-center items-center text-white">
-      <Header />
+    <div className=" w-screen h-screen bg-blue-950 flex flex-col items-center text-white p-4 md:justify-center">
+      <div className="flex flex-col items-center md:mb-8">
+        <Header />
+      </div>
       <Extractor />
       <Footer />
     </div>

@@ -74,18 +74,17 @@ function DragAndDrop() {
   };
 
   return (
-    <div
-      className="w-1/2 h-full border-r-2 flex flex-col gap-5 justify-center"
+    <div className="w-full h-full min-h-[250px] flex flex-col gap-5 justify-center px-4 md:border-r-2 py-4 md:py-0"
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      <span className="text-2xl text-center">Upload File</span>
+      <span className="text-xl md:text-2xl text-center">Upload File</span>
       {dragging ? (
-        <div className="h-2/4 bg-blue-600 border-white border-double border-2 flex items-center justify-center cursor-pointer">
+        <div className="h-48 md:h-2/4 bg-blue-600 border-white border-double border-2 flex items-center justify-center cursor-pointer">
           Drop file here
         </div>
       ) : (
-        <div className="h-2/4  bg-blue-600 border-white border-double border-2 flex flex-col items-center justify-center cursor-pointer">
+        <div className="h-48 md:h-2/4 bg-blue-600 border-white border-double border-2 flex flex-col items-center justify-center cursor-pointer">
           <span>Drag file here</span>
           <input type="file" id="fileInput" className="w-16 h-10 mt-2" />
           <span className="text-[.7rem]">(Only .txt file accepted)</span>
